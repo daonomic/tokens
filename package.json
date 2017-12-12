@@ -1,5 +1,5 @@
 {
-  "name": "daox-tokens",
+  "name": "@daonomic/tokens",
   "version": "0.0.1",
   "description": "Standard tokens",
   "main": "truffle.js",
