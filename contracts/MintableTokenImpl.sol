@@ -4,7 +4,7 @@ import "@daonomic/util/contracts/Ownable.sol";
 import "@daonomic/interfaces/contracts/MintableToken.sol";
 import "./TokenImpl.sol";
 
-contract MintableTokenImpl is TokenImpl, MintableToken, Ownable {
+contract MintableTokenImpl is Ownable, TokenImpl, MintableToken {
     /**
      * @dev Function to mint tokens
      * @param _to The address that will receive the minted tokens.
