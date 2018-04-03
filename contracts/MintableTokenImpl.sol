@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "@daonomic/util/contracts/Ownable.sol";
 import "@daonomic/interfaces/contracts/MintableToken.sol";
@@ -21,6 +21,6 @@ contract MintableTokenImpl is Ownable, Secured, TokenImpl, MintableToken {
     }
 
     function emitMint(address _to, uint256 _value) internal {
-        Mint(_to, _value);
+        emit Mint(_to, _value);
     }
 }

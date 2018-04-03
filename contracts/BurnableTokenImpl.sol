@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.21;
 
 import "./TokenImpl.sol";
 import "./BurnableToken.sol";
@@ -16,6 +16,6 @@ contract BurnableTokenImpl is TokenImpl, BurnableToken {
 		address burner = msg.sender;
 		balances[burner] = balances[burner].sub(_value);
 		totalSupply = totalSupply.sub(_value);
-		Burn(burner, _value);
+		emit Burn(burner, _value);
 	}
 }
