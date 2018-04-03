@@ -1,6 +1,6 @@
 {
   "name": "@daonomic/tokens",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Standard tokens",
   "main": "truffle.js",
   "directories": {

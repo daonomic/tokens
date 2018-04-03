@@ -16,10 +16,11 @@ contract('MintableTokenImpl', function(accounts) {
     assert.equal(totalSupply, 0);
   })
 
-  it("should let owner mint", async () => {
+  it("should let minter mint", async () => {
     var address = tests.randomAddress();
 
-    await token.mint(address, 100);
+    await token.transferRole("minter", accounts[1]);
+    await token.mint(address, 100, {from: accounts[1]});
     assert.equal(await token.totalSupply(), 100);
     assert.equal(await token.balanceOf(address), 100);
   });
@@ -27,8 +28,9 @@ contract('MintableTokenImpl', function(accounts) {
   it("should throw if not owner", async () => {
     var address = tests.randomAddress();
 
+    await token.transferRole("minter", accounts[1]);
     await expectThrow(
-        token.mint(address, 100, {from: accounts[1]})
+        token.mint(address, 100, {from: accounts[2]})
     );
   });
 });
