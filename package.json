@@ -23,7 +23,7 @@
   "homepage": "https://github.com/daonomic/tokens",
   "dependencies": {
     "@daonomic/util": "0.1.7",
-    "@daonomic/interfaces": "~0.1"
+    "@daonomic/interfaces": "0.1.6"
   },
   "devDependencies": {
     "@daonomic/tests-common": "~0.1"

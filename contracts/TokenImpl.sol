@@ -2,7 +2,7 @@ pragma solidity ^0.4.21;
 
 import '@daonomic/util/contracts/SafeMath.sol';
 import '@daonomic/interfaces/contracts/Token.sol';
-import './ReadOnlyTokenImpl.sol';
+import "./BasicTokenImpl.sol";
 
 
 /**
@@ -12,27 +12,18 @@ import './ReadOnlyTokenImpl.sol';
  * @dev https://github.com/ethereum/EIPs/issues/20
  * @dev Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
  */
-contract TokenImpl is Token, ReadOnlyTokenImpl {
-  using SafeMath for uint256;
+contract TokenImpl is Token, BasicTokenImpl {
+
+  mapping(address => mapping(address => uint256)) internal allowed;
 
   /**
-  * @dev transfer token for a specified address
-  * @param _to The address to transfer to.
-  * @param _value The amount to be transferred.
-  */
-  function transfer(address _to, uint256 _value) public returns (bool) {
-    require(_to != address(0));
-    require(_value <= balances[msg.sender]);
-
-    // SafeMath.sub will throw if there is not enough balance.
-    balances[msg.sender] = balances[msg.sender].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    emitTransfer(msg.sender, _to, _value);
-    return true;
-  }
-
-  function emitTransfer(address _from, address _to, uint256 _value) internal {
-    emit Transfer(_from, _to, _value);
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+  function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
+    return allowed[_owner][_spender];
   }
 
   /**

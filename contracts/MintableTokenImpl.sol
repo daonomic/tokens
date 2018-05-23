@@ -13,7 +13,7 @@ contract MintableTokenImpl is Ownable, Secured, TokenImpl, MintableToken {
      * @return A boolean that indicates if the operation was successful.
      */
     function mint(address _to, uint256 _amount) ownerOr("minter") public returns (bool) {
-        totalSupply = totalSupply.add(_amount);
+        total = total.add(_amount);
         balances[_to] = balances[_to].add(_amount);
         emitMint(_to, _amount);
         emitTransfer(address(0), _to, _amount);

@@ -15,7 +15,7 @@ contract BurnableTokenImpl is TokenImpl, BurnableToken {
 
 		address burner = msg.sender;
 		balances[burner] = balances[burner].sub(_value);
-		totalSupply = totalSupply.sub(_value);
+		total = total.sub(_value);
 		emit Burn(burner, _value);
 	}
 }
