@@ -16,12 +16,12 @@ contract RestrictedToken is Ownable, TokenImpl {
     }
 
     function transfer(address _to, uint256 _value) public returns (bool) {
-        require(restrictingService.canTransfer(msg.sender, _to, _value), "RestrictingService prohibits transfer");
+        require(restrictingService.onTransfer(msg.sender, _to, _value), "RestrictingService prohibits transfer");
         super.transfer(_to, _value);
     }
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
-        require(restrictingService.canTransfer(_from, _to, _value), "RestrictingService prohibits transfer");
+        require(restrictingService.onTransfer(_from, _to, _value), "RestrictingService prohibits transfer");
         super.transferFrom(_from, _to, _value);
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@daonomic/tokens",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Standard tokens",
   "main": "truffle.js",
   "directories": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/daonomic/tokens",
   "dependencies": {
     "@daonomic/util": "0.1.7",
-    "@daonomic/interfaces": "0.1.6"
+    "@daonomic/interfaces": "0.1.7"
   },
   "devDependencies": {
     "@daonomic/tests-common": "~0.1"
