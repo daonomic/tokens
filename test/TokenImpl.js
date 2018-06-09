@@ -1,4 +1,4 @@
-var TokenMock = artifacts.require("TokenMock.sol");
+var Token = artifacts.require("TokenMock.sol");
 
 const tests = require("@daonomic/tests-common");
 const expectThrow = tests.expectThrow;
@@ -8,7 +8,7 @@ contract('TokenImpl', function(accounts) {
   let token;
 
   beforeEach(async function() {
-    token = await TokenMock.new(accounts[0], 100);
+    token = await Token.new(accounts[0], 100);
   });
 
   it("should return the correct totalSupply after construction", async function() {
@@ -40,7 +40,6 @@ contract('TokenImpl', function(accounts) {
   });
 
   it('should return the correct allowance amount after approval', async function() {
-    let token = await TokenMock.new(accounts[0], 100);
     await token.approve(accounts[1], 100);
     let allowance = await token.allowance(accounts[0], accounts[1]);
 
@@ -48,7 +47,6 @@ contract('TokenImpl', function(accounts) {
   });
 
   it('should return correct balances after transfer', async function() {
-    let token = await TokenMock.new(accounts[0], 100);
     await token.transfer(accounts[1], 100);
     let balance0 = await token.balanceOf(accounts[0]);
     assert.equal(balance0, 0);
@@ -58,7 +56,6 @@ contract('TokenImpl', function(accounts) {
   });
 
   it('should return correct balances after transfering from another account', async function() {
-    let token = await TokenMock.new(accounts[0], 100);
     await token.approve(accounts[1], 100);
     await token.transferFrom(accounts[0], accounts[2], 100, {from: accounts[1]});
 
@@ -114,7 +111,6 @@ contract('TokenImpl', function(accounts) {
   });
 
   it('should throw an error when trying to transferFrom to 0x0', async function() {
-    let token = await TokenMock.new(accounts[0], 100);
     await token.approve(accounts[1], 100);
     await expectThrow(
         token.transferFrom(accounts[0], 0x0, 100, {from: accounts[1]})
