@@ -35,7 +35,7 @@ contract('TokenImpl', function(accounts) {
 
   it('should throw an error when trying to transfer to 0x0', async function() {
     await expectThrow(
-        token.transfer(0x0, 100)
+        token.transfer("0x0000000000000000000000000000000000000000", 100)
     );
   });
 
@@ -113,7 +113,7 @@ contract('TokenImpl', function(accounts) {
   it('should throw an error when trying to transferFrom to 0x0', async function() {
     await token.approve(accounts[1], 100);
     await expectThrow(
-        token.transferFrom(accounts[0], 0x0, 100, {from: accounts[1]})
+        token.transferFrom(accounts[0], "0x0000000000000000000000000000000000000000", 100, {from: accounts[1]})
     );
   });
 

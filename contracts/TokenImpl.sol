@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.0;
 
 import '@daonomic/util/contracts/SafeMath.sol';
 import '@daonomic/interfaces/contracts/Token.sol';
@@ -22,7 +22,7 @@ contract TokenImpl is Token, BasicTokenImpl {
    * @param _spender address The address which will spend the funds.
    * @return A uint256 specifying the amount of tokens still available for the spender.
    */
-  function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
+  function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
     return allowed[_owner][_spender];
   }
 

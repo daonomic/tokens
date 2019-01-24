@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.5.0;
 
 import "@daonomic/util/contracts/SafeMath.sol";
 import "@daonomic/interfaces/contracts/BasicToken.sol";
@@ -9,7 +9,7 @@ contract BasicTokenImpl is BasicToken {
     uint total;
     mapping(address => uint256) balances;
 
-    function totalSupply() public constant returns (uint) {
+    function totalSupply() public view returns (uint) {
         return total;
     }
 
@@ -18,7 +18,7 @@ contract BasicTokenImpl is BasicToken {
     * @param _owner The address to query the the balance of.
     * @return An uint256 representing the amount owned by the passed address.
     */
-    function balanceOf(address _owner) public constant returns (uint256 balance) {
+    function balanceOf(address _owner) public view returns (uint256 balance) {
         return balances[_owner];
     }
 
